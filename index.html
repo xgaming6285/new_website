@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>$XTOKEN - AI Trading Platform</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: #0a0e27;
+        color: white;
+        overflow-x: hidden;
+      }
+
+      .section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        position: relative;
+      }
+
+      #section1 {
+        position: relative;
+        margin-bottom: -10%;
+      }
+
+      #section2 {
+        margin-top: -10%;
+      }
+
+      /* Registration Form Overlay */
+      .form-overlay {
+        position: absolute;
+        left: 14%;
+        top: 59%;
+        transform: translateY(-50%);
+        z-index: 100;
+        width: 32%;
+      }
+
+      .registration-form {
+        background: rgba(15, 20, 40, 0.85);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 45px 50px 55px 50px;
+      }
+
+      .form-group {
+        margin-bottom: 22px;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 18px 22px;
+        background: rgba(20, 25, 45, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 6px;
+        color: #ffffff;
+        font-size: 17px;
+        font-family: inherit;
+        transition: all 0.3s ease;
+      }
+
+      .form-input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: rgba(0, 255, 255, 0.5);
+        box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.1);
+      }
+
+      .country-code-group {
+        display: flex;
+        gap: 10px;
+      }
+
+      .country-code-select {
+        width: 100%;
+        padding: 18px 22px;
+        background: rgba(20, 25, 45, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 6px;
+        color: #ffffff;
+        font-size: 17px;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .country-code-select:focus {
+        outline: none;
+        border-color: rgba(0, 255, 255, 0.5);
+        box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.1);
+      }
+
+      .country-code-select option {
+        background: #0f1428;
+        color: #ffffff;
+      }
+
+      .submit-button {
+        width: 100%;
+        padding: 18px;
+        background: linear-gradient(135deg, #00d9ff 0%, #00ff88 100%);
+        border: none;
+        border-radius: 8px;
+        color: #0a0e27;
+        font-size: 17px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10%;
+      }
+
+      .submit-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 217, 255, 0.4);
+      }
+
+      .submit-button:active {
+        transform: translateY(0);
+      }
+
+      .success-message {
+        display: none;
+        padding: 15px;
+        background: rgba(0, 255, 136, 0.15);
+        border: 1px solid rgba(0, 255, 136, 0.3);
+        border-radius: 8px;
+        color: #00ff88;
+        text-align: center;
+        margin-top: 15px;
+        font-weight: 500;
+      }
+
+      .success-message.show {
+        display: block;
+      }
+
+      svg {
+        width: 80%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+
+      image {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Smooth scroll behavior */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Navigation dots */
+      .nav-dots {
+        position: fixed;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .nav-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .nav-dot:hover {
+        background: rgba(0, 255, 255, 0.5);
+        transform: scale(1.2);
+      }
+
+      .nav-dot.active {
+        background: #00ffff;
+        border-color: #00ffff;
+        box-shadow: 0 0 10px #00ffff;
+      }
+
+      /* Responsive adjustments */
+
+      /* Large screens - keep original design */
+      @media (min-width: 1441px) {
+        .form-overlay {
+          left: 12%;
+          width: 33%;
+          margin-top: -4%;
+        }
+      }
+
+      /* Medium-large screens (laptops) */
+      @media (max-width: 1440px) {
+        .form-overlay {
+          left: 10%;
+          width: 35%;
+        }
+      }
+
+      /* Medium screens (small laptops/tablets landscape) */
+      @media (max-width: 1200px) {
+        .form-overlay {
+          left: 8%;
+          width: 38%;
+        }
+
+        .registration-form {
+          padding: 35px 40px 45px 40px;
+        }
+
+        .form-input,
+        .country-code-select {
+          padding: 16px 20px;
+          font-size: 16px;
+        }
+
+        .submit-button {
+          padding: 16px;
+          font-size: 16px;
+        }
+      }
+
+      /* Tablets portrait and smaller */
+      @media (max-width: 992px) {
+        .form-overlay {
+          left: 5%;
+          width: 50%;
+        }
+
+        .registration-form {
+          padding: 30px 35px 40px 35px;
+        }
+
+        .form-input,
+        .country-code-select {
+          padding: 14px 18px;
+          font-size: 15px;
+        }
+
+        .form-group {
+          margin-bottom: 18px;
+        }
+
+        .submit-button {
+          padding: 15px;
+          font-size: 15px;
+          margin-top: 8%;
+        }
+      }
+
+      /* Mobile landscape and smaller tablets */
+      @media (max-width: 768px) {
+        .nav-dots {
+          right: 15px;
+        }
+
+        .nav-dot {
+          width: 10px;
+          height: 10px;
+        }
+
+        .form-overlay {
+          left: 5%;
+          width: 60%;
+          max-width: 450px;
+        }
+
+        .registration-form {
+          padding: 25px 30px 35px 30px;
+        }
+
+        .form-input,
+        .country-code-select {
+          padding: 13px 16px;
+          font-size: 15px;
+        }
+
+        .form-group {
+          margin-bottom: 16px;
+        }
+
+        .submit-button {
+          padding: 14px;
+          font-size: 15px;
+          margin-top: 6%;
+        }
+      }
+
+      /* Mobile portrait */
+      @media (max-width: 576px) {
+        .form-overlay {
+          left: 5%;
+          width: 70%;
+          max-width: 380px;
+        }
+
+        .registration-form {
+          padding: 20px 25px 30px 25px;
+        }
+
+        .form-input,
+        .country-code-select {
+          padding: 12px 15px;
+          font-size: 14px;
+        }
+
+        .form-group {
+          margin-bottom: 14px;
+        }
+
+        .submit-button {
+          padding: 13px;
+          font-size: 14px;
+          margin-top: 5%;
+        }
+      }
+
+      /* Small mobile devices */
+      @media (max-width: 400px) {
+        .form-overlay {
+          left: 4%;
+          width: 80%;
+          max-width: 340px;
+        }
+
+        .registration-form {
+          padding: 18px 20px 25px 20px;
+        }
+
+        .form-input,
+        .country-code-select {
+          padding: 11px 14px;
+          font-size: 13px;
+        }
+
+        .form-group {
+          margin-bottom: 12px;
+        }
+
+        .submit-button {
+          padding: 12px;
+          font-size: 13px;
+          margin-top: 4%;
+        }
+
+        svg {
+          width: 100%;
+        }
+      }
+
+      /* Extra small mobile devices */
+      @media (max-width: 360px) {
+        .form-overlay {
+          left: 3%;
+          width: 90%;
+        }
+
+        .registration-form {
+          padding: 15px 18px 22px 18px;
+        }
+
+        .form-input,
+        .country-code-select {
+          padding: 10px 12px;
+          font-size: 12px;
+        }
+
+        .form-group {
+          margin-bottom: 10px;
+        }
+
+        .submit-button {
+          padding: 11px;
+          font-size: 12px;
+          margin-top: 3%;
+        }
+      }
+
+      /* Header Navigation */
+      .header-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 15px 80px;
+        background: linear-gradient(
+          180deg,
+          rgba(10, 14, 39, 0.95) 0%,
+          rgba(10, 14, 39, 0) 100%
+        );
+        pointer-events: none;
+      }
+
+      .nav-menu {
+        display: flex;
+        justify-content: space-evenly;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        pointer-events: auto;
+        width: 100%;
+      }
+
+      .nav-item {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 26px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        text-decoration: none;
+        padding: 5px 0;
+      }
+
+      .nav-item:hover {
+        color: #00ffff;
+      }
+
+      .nav-item::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #00ffff, #00ff88);
+        transition: width 0.3s ease;
+      }
+
+      .nav-item:hover::after,
+      .nav-item.active::after {
+        width: 100%;
+      }
+
+      .nav-item.active {
+        color: #00ffff;
+      }
+
+      @media (max-width: 768px) {
+        .header-nav {
+          padding: 12px 30px;
+        }
+
+        .nav-menu {
+          justify-content: space-evenly;
+        }
+
+        .nav-item {
+          font-size: 18px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .header-nav {
+          padding: 10px 20px;
+        }
+
+        .nav-menu {
+          justify-content: space-evenly;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+
+        .nav-item {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Navigation -->
+    <header class="header-nav">
+      <nav>
+        <ul class="nav-menu">
+          <li
+            class="nav-item active"
+            onclick="navigateToSection(1)"
+            data-nav="1"
+          >
+            Home
+          </li>
+          <li class="nav-item" onclick="navigateToSection(2)" data-nav="2">
+            The Solution
+          </li>
+          <li class="nav-item" onclick="navigateToSection(2)" data-nav="2">
+            How it works
+          </li>
+          <li class="nav-item" onclick="navigateToSection(3)" data-nav="3">
+            Proof
+          </li>
+          <li class="nav-item" onclick="navigateToSection(3)" data-nav="3">
+            Meet the team
+          </li>
+          <li class="nav-item" onclick="navigateToSection(4)" data-nav="4">
+            FAQ
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Section 1: Hero/Landing -->
+    <div class="section" id="section1">
+      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+        <image
+          href="1.png"
+          x="0"
+          y="0"
+          width="1024"
+          height="1024"
+          preserveAspectRatio="xMidYMid slice"
+        />
+      </svg>
+
+      <!-- Registration Form Overlay -->
+      <div class="form-overlay">
+        <form class="registration-form" id="registrationForm">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-input"
+              placeholder="First Name"
+              name="firstName"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-input"
+              placeholder="Last"
+              name="lastName"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="email"
+              class="form-input"
+              placeholder="Email"
+              name="email"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="tel"
+              class="form-input"
+              placeholder="Phone"
+              name="phone"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <select class="country-code-select" name="countryCode" required>
+              <option value="">Country Code</option>
+              <option value="+1">+1 (USA/Canada)</option>
+              <option value="+44">+44 (UK)</option>
+              <option value="+61">+61 (Australia)</option>
+              <option value="+81">+81 (Japan)</option>
+              <option value="+86">+86 (China)</option>
+              <option value="+91">+91 (India)</option>
+              <option value="+49">+49 (Germany)</option>
+              <option value="+33">+33 (France)</option>
+              <option value="+39">+39 (Italy)</option>
+              <option value="+34">+34 (Spain)</option>
+              <option value="+7">+7 (Russia)</option>
+              <option value="+55">+55 (Brazil)</option>
+              <option value="+27">+27 (South Africa)</option>
+              <option value="+82">+82 (South Korea)</option>
+              <option value="+65">+65 (Singapore)</option>
+              <option value="+852">+852 (Hong Kong)</option>
+              <option value="+971">+971 (UAE)</option>
+              <option value="+966">+966 (Saudi Arabia)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-button">
+            Join The Private Sale
+          </button>
+
+          <div class="success-message" id="successMessage">
+            ✓ Registration successful! We'll contact you soon.
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Section 2: Problem & Solution -->
+    <div class="section" id="section2">
+      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+        <image
+          href="2.png"
+          x="0"
+          y="0"
+          width="1024"
+          height="1024"
+          preserveAspectRatio="xMidYMid slice"
+        />
+      </svg>
+    </div>
+
+    <!-- Section 3: Proof & Team -->
+    <div class="section" id="section3">
+      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+        <image
+          href="3.png"
+          x="0"
+          y="0"
+          width="1024"
+          height="1024"
+          preserveAspectRatio="xMidYMid slice"
+        />
+      </svg>
+    </div>
+
+    <!-- Section 4: FAQ & CTA -->
+    <div class="section" id="section4">
+      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+        <image
+          href="4.png"
+          x="0"
+          y="0"
+          width="1024"
+          height="1024"
+          preserveAspectRatio="xMidYMid slice"
+        />
+      </svg>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+      <div
+        class="nav-dot active"
+        onclick="scrollToSection(1)"
+        data-section="1"
+      ></div>
+      <div class="nav-dot" onclick="scrollToSection(2)" data-section="2"></div>
+      <div class="nav-dot" onclick="scrollToSection(3)" data-section="3"></div>
+      <div class="nav-dot" onclick="scrollToSection(4)" data-section="4"></div>
+    </div>
+
+    <script>
+      // Form submission handler
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Get form data
+          const formData = {
+            firstName: this.firstName.value,
+            lastName: this.lastName.value,
+            email: this.email.value,
+            phone: this.phone.value,
+            countryCode: this.countryCode.value,
+            timestamp: new Date().toISOString(),
+          };
+
+          // Log form data to console (in production, this would be sent to a server)
+          console.log("Registration submitted:", formData);
+
+          // Show success message
+          const successMessage = document.getElementById("successMessage");
+          successMessage.classList.add("show");
+
+          // Store in localStorage (optional)
+          try {
+            const registrations =
+              JSON.parse(localStorage.getItem("registrations")) || [];
+            registrations.push(formData);
+            localStorage.setItem(
+              "registrations",
+              JSON.stringify(registrations)
+            );
+          } catch (err) {
+            console.error("Error saving to localStorage:", err);
+          }
+
+          // Reset form after 3 seconds
+          setTimeout(() => {
+            this.reset();
+            successMessage.classList.remove("show");
+          }, 3000);
+
+          // Optional: Send data to server
+          // fetch('/api/register', {
+          //   method: 'POST',
+          //   headers: { 'Content-Type': 'application/json' },
+          //   body: JSON.stringify(formData)
+          // })
+          // .then(response => response.json())
+          // .then(data => console.log('Success:', data))
+          // .catch(error => console.error('Error:', error));
+        });
+
+      // Smooth scroll to sections
+      function scrollToSection(num) {
+        document
+          .getElementById("section" + num)
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      // Navigate to section and update header nav active state
+      function navigateToSection(num) {
+        scrollToSection(num);
+        updateHeaderNavActive(num);
+      }
+
+      // Update active state in header navigation
+      function updateHeaderNavActive(sectionNum) {
+        const navItems = document.querySelectorAll(".nav-item");
+        navItems.forEach((item) => {
+          item.classList.remove("active");
+          if (item.getAttribute("data-nav") === sectionNum.toString()) {
+            item.classList.add("active");
+          }
+        });
+      }
+
+      // Update active dot on scroll
+      window.addEventListener("scroll", () => {
+        const sections = document.querySelectorAll(".section");
+        const dots = document.querySelectorAll(".nav-dot");
+        const navItems = document.querySelectorAll(".nav-item");
+
+        let current = "";
+
+        sections.forEach((section, index) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+
+          if (pageYOffset >= sectionTop - sectionHeight / 3) {
+            current = (index + 1).toString();
+          }
+        });
+
+        // Update dots
+        dots.forEach((dot) => {
+          dot.classList.remove("active");
+          if (dot.getAttribute("data-section") === current) {
+            dot.classList.add("active");
+          }
+        });
+
+        // Update header navigation
+        navItems.forEach((item) => {
+          item.classList.remove("active");
+          if (item.getAttribute("data-nav") === current) {
+            item.classList.add("active");
+          }
+        });
+      });
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        const sections = document.querySelectorAll(".section");
+        const currentSection =
+          Math.round(window.pageYOffset / window.innerHeight) + 1;
+
+        if (e.key === "ArrowDown" && currentSection < sections.length) {
+          scrollToSection(currentSection + 1);
+        } else if (e.key === "ArrowUp" && currentSection > 1) {
+          scrollToSection(currentSection - 1);
+        }
+      });
+    </script>
+  </body>
+</html>
