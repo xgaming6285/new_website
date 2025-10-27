@@ -14,7 +14,7 @@
       body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Oxygen, Ubuntu, Cantarell, sans-serif;
-        background: #0a0e27;
+        background: #0b0e14;
         color: white;
         overflow-x: hidden;
       }
@@ -157,6 +157,8 @@
         height: auto;
         display: block;
         margin: 0 auto;
+        border-radius: 8px;
+        filter: drop-shadow(0 0 40px rgba(11, 14, 20, 0.8));
       }
 
       image {
@@ -224,23 +226,57 @@
       /* Medium screens (small laptops/tablets landscape) */
       @media (max-width: 1200px) {
         .form-overlay {
-          left: 8%;
-          width: 38%;
+          left: 12%;
+          width: 35%;
+          margin-top: -4%;
         }
 
         .registration-form {
-          padding: 35px 40px 45px 40px;
+          padding: 20px 30px 25px 30px;
         }
 
         .form-input,
         .country-code-select {
-          padding: 16px 20px;
-          font-size: 16px;
+          padding: 10px 14px;
+          font-size: 14px;
+        }
+
+        .form-group {
+          margin-bottom: 10px;
         }
 
         .submit-button {
-          padding: 16px;
-          font-size: 16px;
+          padding: 10px;
+          font-size: 14px;
+        }
+      }
+
+      /* Medium-small tablets */
+      @media (max-width: 1100px) {
+        .form-overlay {
+          left: 12%;
+          width: 33%;
+          margin-top: -4%;
+        }
+
+        .registration-form {
+          padding: 16px 26px 20px 26px;
+        }
+
+        .form-input,
+        .country-code-select {
+          padding: 9px 13px;
+          font-size: 13px;
+        }
+
+        .form-group {
+          margin-bottom: 9px;
+        }
+
+        .submit-button {
+          padding: 9px;
+          font-size: 13px;
+          margin-top: 1%;
         }
       }
 
@@ -272,6 +308,89 @@
         }
       }
 
+      @media (max-width: 991px) {
+        .form-overlay {
+          left: 12%;
+          width: 34%;
+        }
+
+        .registration-form {
+          padding: 14px 24px 18px 24px;
+        }
+
+        .form-input,
+        .country-code-select {
+          padding: 8px 12px;
+          font-size: 13px;
+        }
+
+        .form-group {
+          margin-bottom: 9px;
+        }
+
+        .submit-button {
+          padding: 9px;
+          font-size: 13px;
+          margin-top: 2%;
+        }
+      }
+
+      /* Medium-small tablets */
+      @media (max-width: 940px) {
+        .form-overlay {
+          left: 12%;
+          width: 34%;
+        }
+
+        .registration-form {
+          padding: 14px 24px 18px 24px;
+        }
+
+        .form-input,
+        .country-code-select {
+          padding: 8px 12px;
+          font-size: 13px;
+        }
+
+        .form-group {
+          margin-bottom: 9px;
+        }
+
+        .submit-button {
+          padding: 9px;
+          font-size: 13px;
+          margin-top: 2%;
+        }
+      }
+
+      /* Medium tablets */
+      @media (max-width: 880px) {
+        .form-overlay {
+          left: 12%;
+          width: 37%;
+        }
+
+        .registration-form {
+          padding: 12px 20px 16px 20px;
+        }
+
+        .form-input,
+        .country-code-select {
+          padding: 7px 11px;
+          font-size: 12px;
+        }
+
+        .form-group {
+          margin-bottom: 8px;
+        }
+
+        .submit-button {
+          padding: 8px;
+          font-size: 12px;
+          margin-top: 2%;
+        }
+      }
+
       /* Mobile landscape and smaller tablets */
       @media (max-width: 768px) {
         .nav-dots {
@@ -284,87 +403,118 @@
         }
 
         .form-overlay {
-          left: 5%;
-          width: 60%;
-          max-width: 450px;
+          left: 12%;
+          width: 33%;
+          max-width: 50%;
+          margin-top: -4%;
         }
 
         .registration-form {
-          padding: 25px 30px 35px 30px;
+          padding: 10px 14px 12px 14px;
         }
 
         .form-input,
         .country-code-select {
-          padding: 13px 16px;
-          font-size: 15px;
+          padding: 5px 8px;
+          font-size: 11px;
         }
 
         .form-group {
-          margin-bottom: 16px;
+          margin-bottom: 4px;
         }
 
         .submit-button {
-          padding: 14px;
-          font-size: 15px;
-          margin-top: 6%;
+          padding: 6px;
+          font-size: 11px;
+          margin-top: 0.5%;
         }
       }
 
       /* Mobile portrait */
       @media (max-width: 576px) {
         .form-overlay {
-          left: 5%;
-          width: 70%;
+          left: 13%;
+          width: 33%;
           max-width: 380px;
+          margin-top: -2%;
         }
 
         .registration-form {
-          padding: 20px 25px 30px 25px;
+          padding: 8px 12px 10px 12px;
         }
 
         .form-input,
         .country-code-select {
-          padding: 12px 15px;
-          font-size: 14px;
+          padding: 4px 7px;
+          font-size: 10px;
         }
 
         .form-group {
-          margin-bottom: 14px;
+          margin-bottom: 3px;
         }
 
         .submit-button {
-          padding: 13px;
-          font-size: 14px;
-          margin-top: 5%;
+          padding: 5px;
+          font-size: 10px;
+          margin-top: 0.3%;
+        }
+      }
+
+      /* Small mobile devices */
+      @media (max-width: 480px) {
+        .form-overlay {
+          left: 13%;
+          width: 36%;
+          max-width: 360px;
+        }
+
+        .registration-form {
+          padding: 5px 9px 6px 9px;
+        }
+
+        .form-input,
+        .country-code-select {
+          padding: 3px 5px;
+          font-size: 9px;
+        }
+
+        .form-group {
+          margin-bottom: 2px;
+        }
+
+        .submit-button {
+          padding: 4px;
+          font-size: 9px;
+          margin-top: 0.2%;
         }
       }
 
       /* Small mobile devices */
       @media (max-width: 400px) {
         .form-overlay {
-          left: 4%;
-          width: 80%;
+          left: 3%;
+          width: 41%;
           max-width: 340px;
         }
 
         .registration-form {
-          padding: 18px 20px 25px 20px;
+          padding: 6px 10px 8px 10px;
         }
 
         .form-input,
         .country-code-select {
-          padding: 11px 14px;
-          font-size: 13px;
+          padding: 3px 6px;
+          font-size: 9px;
         }
 
         .form-group {
-          margin-bottom: 12px;
+          margin-bottom: 2px;
         }
 
         .submit-button {
-          padding: 12px;
-          font-size: 13px;
-          margin-top: 4%;
+          padding: 4px;
+          font-size: 9px;
+          margin-top: 0.2%;
         }
 
         svg {
@@ -478,17 +628,97 @@
 
       @media (max-width: 576px) {
         .header-nav {
-          padding: 10px 20px;
+          display: none;
         }
+      }
 
-        .nav-menu {
-          justify-content: space-evenly;
-          flex-wrap: wrap;
-          gap: 10px;
+      /* Back to Top Button */
+      .back-to-top-btn {
+        position: absolute;
+        bottom: 16%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 200;
+        padding: 3% 8%;
+        background: linear-gradient(135deg, #00d9ff 0%, #00ff88 100%);
+        border: none;
+        border-radius: 12px;
+        color: #f3f3f3;
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0, 217, 255, 0.3);
+        text-decoration: none;
+        display: inline-block;
+        white-space: nowrap;
+      }
+
+      .back-to-top-btn:hover {
+        transform: translateX(-50%) translateY(-3px);
+        box-shadow: 0 8px 30px rgba(0, 217, 255, 0.5);
+      }
+
+      .back-to-top-btn:active {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* Responsive adjustments for back to top button */
+      @media (max-width: 1200px) {
+        .back-to-top-btn {
+          font-size: 18px;
+          padding: 2% 3%;
+          bottom: 16.5%;
         }
+      }
 
-        .nav-item {
+      @media (max-width: 992px) {
+        .back-to-top-btn {
           font-size: 16px;
+          padding: 2% 0.5%;
+          bottom: 16.5%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .back-to-top-btn {
+          font-size: 14px;
+          padding: 2% -0.5%;
+          bottom: 16.5%;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .back-to-top-btn {
+          font-size: 12px;
+          padding: 2% 0.5%;
+          bottom: 16.5%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .back-to-top-btn {
+          font-size: 11px;
+          padding: 2% 0.5%;
+          bottom: 16.5%;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .back-to-top-btn {
+          font-size: 10px;
+          padding: 2.3% 0.5%;
+          bottom: 16.5%;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .back-to-top-btn {
+          font-size: 9px;
+          padding: 2% 0.5%;
+          bottom: 16.5%;
         }
       }
     </style>
@@ -497,7 +727,7 @@
     <!-- Header Navigation -->
     <header class="header-nav">
       <nav>
-        <ul class="nav-menu">
+        <ul class="nav-menu" id="navMenu">
           <li
             class="nav-item active"
             onclick="navigateToSection(1)"
@@ -566,6 +796,8 @@
               class="form-input"
               placeholder="Email"
               name="email"
+              pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+              title="Please enter a valid email address with @ and domain"
               required
             />
           </div>
@@ -574,8 +806,11 @@
             <input
               type="tel"
               class="form-input"
-              placeholder="Phone"
+              placeholder="Phone (9 digits)"
               name="phone"
+              pattern="[0-9]{9}"
+              title="Please enter exactly 9 digits"
+              maxlength="9"
               required
             />
           </div>
@@ -655,6 +890,11 @@
           preserveAspectRatio="xMidYMid slice"
         />
       </svg>
+
+      <!-- Back to Top Button -->
+      <button class="back-to-top-btn" onclick="scrollToTop()">
+        Get Your $XTOKEN and Start Trading Smarter.
+      </button>
     </div>
 
     <!-- Navigation Dots -->
@@ -673,54 +913,116 @@
       // Form submission handler
       document
         .getElementById("registrationForm")
-        .addEventListener("submit", function (e) {
+        .addEventListener("submit", async function (e) {
           e.preventDefault();
+
+          // Get the submit button and success message elements
+          const submitButton = this.querySelector(".submit-button");
+          const successMessage = document.getElementById("successMessage");
+
+          // Get form values
+          const firstName = this.firstName.value.trim();
+          const lastName = this.lastName.value.trim();
+          const email = this.email.value.trim();
+          const phone = this.phone.value.trim();
+          const countryCode = this.countryCode.value;
+
+          // Client-side validation
+          // Validate email format (must contain @ and .)
+          if (!email.includes("@") || !email.includes(".")) {
+            successMessage.textContent =
+              "✗ Please enter a valid email address with @ and domain";
+            successMessage.style.background = "rgba(255, 0, 0, 0.15)";
+            successMessage.style.borderColor = "rgba(255, 0, 0, 0.3)";
+            successMessage.style.color = "#ff4444";
+            successMessage.classList.add("show");
+            setTimeout(() => {
+              successMessage.classList.remove("show");
+            }, 3000);
+            return;
+          }
+
+          // Validate phone number (exactly 9 digits)
+          if (!/^\d{9}$/.test(phone)) {
+            successMessage.textContent =
+              "✗ Phone number must be exactly 9 digits";
+            successMessage.style.background = "rgba(255, 0, 0, 0.15)";
+            successMessage.style.borderColor = "rgba(255, 0, 0, 0.3)";
+            successMessage.style.color = "#ff4444";
+            successMessage.classList.add("show");
+            setTimeout(() => {
+              successMessage.classList.remove("show");
+            }, 3000);
+            return;
+          }
 
           // Get form data
           const formData = {
-            firstName: this.firstName.value,
-            lastName: this.lastName.value,
-            email: this.email.value,
-            phone: this.phone.value,
-            countryCode: this.countryCode.value,
-            timestamp: new Date().toISOString(),
+            firstName,
+            lastName,
+            email,
+            phone,
+            countryCode,
           };
 
-          // Log form data to console (in production, this would be sent to a server)
-          console.log("Registration submitted:", formData);
+          // Disable button during submission
+          submitButton.disabled = true;
+          submitButton.textContent = "Submitting...";
 
-          // Show success message
-          const successMessage = document.getElementById("successMessage");
-          successMessage.classList.add("show");
-
-          // Store in localStorage (optional)
           try {
-            const registrations =
-              JSON.parse(localStorage.getItem("registrations")) || [];
-            registrations.push(formData);
-            localStorage.setItem(
-              "registrations",
-              JSON.stringify(registrations)
-            );
-          } catch (err) {
-            console.error("Error saving to localStorage:", err);
+            // Send data to MongoDB via backend API
+            const response = await fetch("/api/register", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+              // Log success to console
+              console.log("Registration successful:", result);
+
+              // Show success message
+              successMessage.textContent =
+                result.message ||
+                "✓ Registration successful! We'll contact you soon.";
+              successMessage.style.background = "rgba(0, 255, 136, 0.15)";
+              successMessage.style.borderColor = "rgba(0, 255, 136, 0.3)";
+              successMessage.style.color = "#00ff88";
+              successMessage.classList.add("show");
+
+              // Reset form after 3 seconds
+              setTimeout(() => {
+                this.reset();
+                successMessage.classList.remove("show");
+                submitButton.disabled = false;
+                submitButton.textContent = "Join The Private Sale";
+              }, 3000);
+            } else {
+              // Handle error from server
+              throw new Error(result.message || "Registration failed");
+            }
+          } catch (error) {
+            console.error("Error submitting registration:", error);
+
+            // Show error message
+            successMessage.textContent =
+              "✗ " + (error.message || "An error occurred. Please try again.");
+            successMessage.style.background = "rgba(255, 0, 0, 0.15)";
+            successMessage.style.borderColor = "rgba(255, 0, 0, 0.3)";
+            successMessage.style.color = "#ff4444";
+            successMessage.classList.add("show");
+
+            // Re-enable button after 3 seconds
+            setTimeout(() => {
+              successMessage.classList.remove("show");
+              submitButton.disabled = false;
+              submitButton.textContent = "Join The Private Sale";
+            }, 3000);
           }
-
-          // Reset form after 3 seconds
-          setTimeout(() => {
-            this.reset();
-            successMessage.classList.remove("show");
-          }, 3000);
-
-          // Optional: Send data to server
-          // fetch('/api/register', {
-          //   method: 'POST',
-          //   headers: { 'Content-Type': 'application/json' },
-          //   body: JSON.stringify(formData)
-          // })
-          // .then(response => response.json())
-          // .then(data => console.log('Success:', data))
-          // .catch(error => console.error('Error:', error));
         });
 
       // Smooth scroll to sections
@@ -728,6 +1030,11 @@
         document
           .getElementById("section" + num)
           .scrollIntoView({ behavior: "smooth" });
+      }
+
+      // Scroll to top function
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
       // Navigate to section and update header nav active state
